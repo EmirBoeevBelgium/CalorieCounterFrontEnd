@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { ListItem, Image, SearchBar, Button } from 'react-native-elements';
-import { FlatList, Text, View, StyleSheet } from "react-native";
+import { FlatList, Text, View, StyleSheet } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { AppContext } from '../context/AppContext';
 
 const Recipes = ({ colors }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [searchResult, setSearchResult] = useState('');
+
+    const { recipes, addRecipe } = useContext(AppContext);
 
     const navigation = useNavigation();
     const myColors = colors;
@@ -30,6 +33,16 @@ const Recipes = ({ colors }) => {
 
     const filteredData = data ? data.filter(recipe => recipe.recipeName.toLowerCase().includes(searchResult.toLowerCase())) : [];
 
+    const handleRecipe = (recipeId) => {
+        const isAdded = recipes.some((recipe) => recipe.id === recipeId);
+        if (!isAdded) {
+            const recipeToAdd = data.find((recipe) => recipe.id === recipeId);
+            addRecipe({ ...recipeToAdd, isAdded: true });
+        }
+
+        console.log(recipes);
+    };
+
     return (
         <View style={{ flex: 1, textAlignVertical: 'middle' }}>
             {loading ? (
@@ -47,33 +60,47 @@ const Recipes = ({ colors }) => {
                     <FlatList
                         data={filteredData}
                         keyExtractor={(recipe) => recipe.id.toString()}
-                        renderItem={({ item: recipe }) => (
-                            <View>
-                                <ListItem
-                                    containerStyle={{ backgroundColor: myColors.background, borderColor: myColors.border }}
-                                    bottomDivider
-                                    onPress={() => { navigation.navigate('Recipe', { recipe }); }}
-                                >
-                                    <Image source={require("../assets/fork-knife.jpg")} style={{ width: 50, height: 50 }} />
-                                    <ListItem.Content style={{ backgroundColor: myColors.background }}>
-                                        <ListItem.Title style={{ color: myColors.text, fontWeight: "bold" }}>
-                                            {`${recipe.recipeName.charAt(0).toUpperCase() + recipe.recipeName.slice(1)}`}
-                                        </ListItem.Title>
-                                        <ListItem.Subtitle style={{ color: myColors.text }}>
-                                            {`Obtained calories: ${recipe.totalKiloCalories} kCal/Serving`}
-                                        </ListItem.Subtitle>
-                                    </ListItem.Content>
-                                    <ListItem.Chevron />
-                                </ListItem>
-                            </View>
-                        )}
+                        renderItem={({ item: recipe }) => {
+                            const isAdded = recipes.some((r) => r.id === recipe.id);
+                            return (
+                                <View>
+                                    <ListItem
+                                        containerStyle={{ backgroundColor: myColors.background, borderColor: myColors.border }}
+                                        bottomDivider
+                                        onPress={() => { navigation.navigate('Recipe', { recipe }); }}
+                                    >
+                                        <Image source={require("../assets/fork-knife.jpg")} style={{ width: 50, height: 50 }} />
+                                        <ListItem.Content style={{ backgroundColor: myColors.background }}>
+                                            <ListItem.Title style={{ color: myColors.text, fontWeight: "bold" }}>
+                                                {`${recipe.recipeName.charAt(0).toUpperCase() + recipe.recipeName.slice(1)}`}
+                                            </ListItem.Title>
+                                            <ListItem.Subtitle style={{ color: myColors.text }}>
+                                                {`Obtained calories: ${recipe.totalKiloCalories} kCal/Serving`}
+                                            </ListItem.Subtitle>
+                                        </ListItem.Content>
+                                        <Button
+                                            title="Add"
+                                            buttonStyle={{
+                                                backgroundColor: isAdded ? myColors.disabledButtonBackground : myColors.buttonBackground
+                                            }}
+                                            titleStyle={{ color: isAdded ? myColors.disabledButtonText : myColors.buttonText }}
+                                            disabled={isAdded}
+                                            onPress={() => handleRecipe(recipe.id)}
+                                        />
+                                        <ListItem.Chevron />
+                                    </ListItem>
+                                </View>
+                            );
+                        }}
                     />
                     <View style={styles.buttonContainer}>
                         <Button
                             title="Add your own recipe"
                             onPress={() => navigation.navigate('New recipe')}
-                            buttonStyle={styles.buttonStyle}
-                            titleStyle={styles.buttonTitle}
+                            buttonStyle={{
+                               backgroundColor: myColors.buttonBackground
+                            }}
+                            titleStyle={{color: myColors.buttonText}}
                         />
                     </View>
                 </>

@@ -85,16 +85,14 @@ const NewRecipe = ({ colors }) => {
     return (
         <ScrollView style={[styles.body, { backgroundColor: myColors.background }]}>
             <TextInput
-                style={[styles.input, { backgroundColor: myColors.background, color: myColors.text }]}
+                style={[styles.input, {backgroundColor: 'white', color: 'black'}]}
                 placeholder="Recipe Name"
-                placeholderTextColor={myColors.text}
                 value={recipeName}
                 onChangeText={setRecipeName}
             />
             <TextInput
-                style={[styles.input, { backgroundColor: myColors.background, color: myColors.text }]}
+                style={[styles.input, {backgroundColor: 'white', color: 'black'}]}
                 placeholder="Total kCal"
-                placeholderTextColor={myColors.text}
                 keyboardType="numeric"
                 value={totalKiloCalories}
                 onChangeText={setTotalKiloCalories}
@@ -103,16 +101,14 @@ const NewRecipe = ({ colors }) => {
             {ingredients.map((ingredient, index) => (
                 <View key={index} style={styles.ingrInstrContainer}>
                     <TextInput
-                        style={[styles.ingredientInput, { backgroundColor: myColors.background, color: myColors.text }]}
+                        style={[styles.ingredientInput]}
                         placeholder="Ingredient name"
-                        placeholderTextColor={myColors.text}
                         value={ingredient.name}
                         onChangeText={(text) => handleIngredientChange(index, 'name', text)}
                     />
                     <TextInput
-                        style={[styles.ingredientInput, { backgroundColor: myColors.background, color: myColors.text }]}
+                        style={[styles.ingredientInput]}
                         placeholder="Ingredient amount"
-                        placeholderTextColor={myColors.text}
                         value={ingredient.amount}
                         onChangeText={(text) => handleIngredientChange(index, 'amount', text)}
                     />
@@ -130,9 +126,8 @@ const NewRecipe = ({ colors }) => {
                 <View key={index} style={styles.ingrInstrContainer}>
                     <Text style={{ marginRight: 10, color: myColors.text }}>Step {index + 1}</Text>
                     <TextInput
-                        style={[styles.instructionInput, { backgroundColor: myColors.background, color: myColors.text }]}
+                        style={[styles.instructionInput]}
                         placeholder="Instruction"
-                        placeholderTextColor={myColors.text}
                         value={instruction}
                         onChangeText={(text) => handleInstructionChange(index, text)}
                         multiline={true}
@@ -150,7 +145,8 @@ const NewRecipe = ({ colors }) => {
                 <Button 
                     title="Add Recipe" 
                     onPress={handleAddRecipe} 
-                    color={myColors.buttonBackground} 
+                    buttonStyle={{ backgroundColor: myColors.buttonBackground }}
+                    titleStyle={{ color: myColors.buttonText }}
                 />
             </View>
         </ScrollView>
@@ -169,6 +165,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 5,
         height: 40,
+
     },
     label: {
         fontSize: 20,
@@ -188,6 +185,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginRight: 10,
         height: 40,
+        backgroundColor: 'white'
     },
     instructionInput: {
         flex: 1,
@@ -196,6 +194,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
         height: 80,
+        backgroundColor: 'white'
     },
     addButton: {
         flexDirection: 'row',

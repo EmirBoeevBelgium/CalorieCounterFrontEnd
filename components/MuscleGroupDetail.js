@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, View, StyleSheet } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { Text, View, StyleSheet} from 'react-native';
 
 const MuscleGroupDetail = ({ route, colors }) => {
     const { muscleGroup } = route.params;
     const myColors = colors;
-
 
    
 
@@ -19,7 +17,7 @@ const MuscleGroupDetail = ({ route, colors }) => {
             <Text style={[{marginTop: 10}, { color: myColors.text }, {fontSize: 20}]}>
                 Description:
             </Text>
-            <Text style={[{marginTop: 10}, { color: myColors.text }, {fontSize: 20}]}>
+            <Text style={[{marginTop: 10}, { color: myColors.text }, {fontSize: 15}]}>
                 { muscleGroup.muscleGroupDescription }
             </Text>
         </View>

@@ -9,23 +9,42 @@ import { AppContext } from './context/AppContext';
 export default function App() {
 
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [favoriteSongs, setFavoriteSongs] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const [workouts, setWorkouts] = useState([]);
+  const [isConsumedCalsVisible, setIsConsumedCalsVisible] = useState(true);
+  const [isBurnedCalsVisible, setIsBurnedCalsVisible] = useState(true);
 
-  /*const addFavoriteSong = (song) => {
-    setFavoriteSongs((prevFavorites) => [...prevFavorites, song]);
+  const addRecipe = (recipe) => {
+    setRecipes((prevRecipes) => [...prevRecipes, recipe]);
   };
 
-  const removeFavoriteSong = (songId) => {
-    setFavoriteSongs((prevFavorites) => prevFavorites.filter((song) => song.id !== songId));
-  };*/
+  const removeRecipe = (recipeId) => {
+    setRecipes((prevRecipes) => prevRecipes.filter((recipe) => recipe.id !== recipeId));
+  };
+
+
+  const addWorkout = (workout) => {
+    setWorkouts((prevWorkouts) => [...prevWorkouts, workout]);
+  };
+
+  const removeWorkout = (workoutId) => {
+    setWorkouts((prevWorkouts) => prevWorkouts.filter((workout) => workout.id !== workoutId));
+  };
 
   const appContext = useMemo(() => {
     return {
       isDarkTheme,
       setIsDarkTheme,
-      favoriteSongs,
-      //addFavoriteSong,
-      //removeFavoriteSong,
+      recipes,
+      addRecipe,
+      removeRecipe,
+      workouts,
+      addWorkout,
+      removeWorkout,
+      isConsumedCalsVisible,
+            setIsConsumedCalsVisible,
+            isBurnedCalsVisible,
+            setIsBurnedCalsVisible
     }
   });
   return (

@@ -10,7 +10,8 @@ const DarkTheme = {
         inputText: 'white',
         buttonBackground: 'white',
         buttonText: 'black',
-        buttonIconColor: 'black'
+        buttonIconColor: 'black',
+        borderColor: 'white'
 
     }
 };

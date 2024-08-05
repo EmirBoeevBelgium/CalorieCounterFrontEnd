@@ -10,7 +10,8 @@ const LightTheme = {
         inputText: 'black',
         buttonBackground: 'black',
         buttonText: 'white',
-        buttonIconColor: 'white'
+        buttonIconColor: 'white',
+        borderColor: 'black'
 
     }
 }
