@@ -33,7 +33,7 @@ const WorkoutDetail = ({ route, colors }) => {
 
                 console.log('All fetched results:', results);
 
-                setMuscleGroups(results.filter(Boolean)); // Filter out null values
+                setMuscleGroups(results.filter(Boolean)); // dit filtert blijkbaar null waarden uit (handig voor later)
             } catch (error) {
                 console.error('Error fetching muscle groups:', error);
             } finally {

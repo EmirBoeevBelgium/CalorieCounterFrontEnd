@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Button, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import NewRecipe from '../components/NewRecipe';
 import { useTheme } from '@react-navigation/native';
 

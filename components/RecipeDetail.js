@@ -1,9 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { ListItem, Image, SearchBar } from 'react-native-elements';
-import { FlatList, ScrollView, Text, View, StyleSheet, TouchableOpacity, SectionList } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native';
-import { AppContext } from '../context/AppContext';
+import React from 'react';
+import { Text, View, StyleSheet, SectionList, ScrollView } from "react-native";
 
 
 
@@ -11,7 +7,6 @@ const RecipeDetail = ({route, colors}) => {
 
     const { recipe } = route.params
     const myColors = colors
-    const navigation = useNavigation();
 
     const sortedInstructions = [...recipe.recipeInstructions].sort((a, b) => a.step - b.step);
 
@@ -29,6 +24,7 @@ const RecipeDetail = ({route, colors}) => {
 
     return (
         <View style={styles.body}>
+            <ScrollView>
         <Text style={[styles.titleText, { color: myColors.text }]}>Recipe: {recipe.recipeName}</Text>
         <Text style={[styles.calorieText, { color: myColors.text }]}>Total obtained kCal: {recipe.totalKiloCalories}</Text>
         <SectionList
@@ -55,6 +51,7 @@ const RecipeDetail = ({route, colors}) => {
           <Text style={{ color: myColors.text, fontWeight: "bold", fontSize: 18, marginTop: 20}}>{title}</Text>
         )}
       />
+      </ScrollView>
         </View>
         
     )

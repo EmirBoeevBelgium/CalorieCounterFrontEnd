@@ -143,10 +143,12 @@ const NewRecipe = ({ colors }) => {
             </TouchableOpacity>
             <View style={styles.buttonContainer}>
                 <Button 
-                    title="Add Recipe" 
+                    title="Save" 
                     onPress={handleAddRecipe} 
-                    buttonStyle={{ backgroundColor: myColors.buttonBackground }}
-                    titleStyle={{ color: myColors.buttonText }}
+                    buttonStyle={{
+                        backgroundColor: myColors.buttonBackground
+                    }}
+                    titleStyle={{ color:  myColors.buttonText }}
                 />
             </View>
         </ScrollView>
