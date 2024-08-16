@@ -1,5 +1,4 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Button, Text } from 'react-native';
 import CalorieCalculator from '../components/CalorieCalculator';
 import { useTheme } from '@react-navigation/native';
 

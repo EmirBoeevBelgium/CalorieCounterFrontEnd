@@ -1,5 +1,4 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Button, Text } from 'react-native';
 import RecipeDetail from '../components/RecipeDetail';
 import { useTheme } from '@react-navigation/native';
 

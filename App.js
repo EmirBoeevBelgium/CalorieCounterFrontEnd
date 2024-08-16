@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { StatusBar } from 'expo-status-bar';
+import React, { useState, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Navigator from './config/Navigator';
 import { AppContext } from './context/AppContext';
 
